@@ -259,5 +259,29 @@ class TestPolynomialMethods(unittest.TestCase):
     def test_full_pol_1(self):
         self.assertEqual('-8x^7 - 12x^6 + 38x^5 - 28x^4 + 6x^3 + 28x^2 - 15x - 4', str(Polynomial([4, 0, -3, 5]) * Polynomial([-2, 6, 8, 0, 0]) + 5 - 3 * Polynomial([12, 0, 0, 0, 4, 5, 3])))
 
+    def test_bool_exc_1(self):
+        with self.assertRaises(TypeError):
+            True * Polynomial([5, 3, -10, 0, 2])
+
+    def test_bool_exc_2(self):
+        with self.assertRaises(TypeError):
+            Polynomial([5, 3, -10, 0, 2]) * False
+
+    def test_bool_exc_3(self):
+        with self.assertRaises(TypeError):
+            True + Polynomial([5, 3, -10, 0, 2])
+
+    def test_bool_exc_4(self):
+        with self.assertRaises(TypeError):
+            Polynomial([5, 3, -10, 0, 2]) + False
+
+    def test_bool_exc_5(self):
+        with self.assertRaises(TypeError):
+            True - Polynomial([5, 3, -10, 0, 2])
+
+    def test_bool_exc_6(self):
+        with self.assertRaises(TypeError):
+            Polynomial([5, 3, -10, 0, 2]) - False
+
 if __name__ == '__main__':
     unittest.main()

@@ -23,7 +23,7 @@ class Polynomial:
 
     def __add__(self, other):
         result_sum = []
-        if isinstance(other, int):
+        if isinstance(other, int) and not isinstance(other, bool):
             result_sum = self.coeffs
             result_sum[-1] = self.coeffs[-1] + other
             return (Polynomial(result_sum))
@@ -52,7 +52,7 @@ class Polynomial:
 
     def __sub__(self, other):
         result_sum = []
-        if isinstance(other, int):
+        if isinstance(other, int) and not isinstance(other, bool):
             result_sum = self.coeffs
             result_sum[-1] = self.coeffs[-1] - other
             return (Polynomial(result_sum))
@@ -77,11 +77,7 @@ class Polynomial:
             raise TypeError('Incorrected input data. Expected: int, Polynomial. Actual:' + str(type(other)))
 
     def __rsub__(self, other):
-        result_sum = []
-        if not type(other) == Polynomial:
-            result_sum =[-1 * tmp for tmp in self.coeffs]
-            result_sum[-1] = other - self.coeffs[-1]
-            return (Polynomial(result_sum))
+        return (-self.__sub__(other))
 
     def __neg__(self):
         self.coeffs = [-coef for coef in self.coeffs]
@@ -89,7 +85,7 @@ class Polynomial:
 
     def __mul__(self, other):
         res_mult = []
-        if isinstance(other, int):
+        if isinstance(other, int) and not isinstance(other, bool):
             res_mult = [coeff * other for coeff in self.coeffs]
             return Polynomial(res_mult)
         elif isinstance(other, Polynomial):
