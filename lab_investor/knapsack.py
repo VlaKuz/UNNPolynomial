@@ -42,3 +42,4 @@ def knapsack_solver(investors_data, obligations):
 
     investors_data["items"].reverse()
     investors_data["total_reward"] = list_reward[len(obligations)][full_money]
+    return investors_data, obligations
