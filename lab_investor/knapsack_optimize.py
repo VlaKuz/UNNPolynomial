@@ -36,5 +36,6 @@ def knapsack_solver_optimize(investors_data, obligations, names):
             current_money -= (int(10. * obligations[obligation_count - 1][1] * obligations[obligation_count - 1][2]))
 
     items_list.reverse()
+    res_name.reverse()
     total_reward = list_reward[len(obligations)][full_money]
     return investors_data, obligations, items_list, total_reward, res_name
