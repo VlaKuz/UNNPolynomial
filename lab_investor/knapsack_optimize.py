@@ -2,7 +2,7 @@ import numpy as np
 from numba import njit
 NOMINAL_OBLIGATION = 1000
 MONTH = 30
-@njit(cache=True)
+@njit
 def knapsack_solver_optimize(investors_data, obligations, names):
 
     full_money = investors_data[2]
@@ -32,7 +32,6 @@ def knapsack_solver_optimize(investors_data, obligations, names):
             if investors_data[2] - (int(10. * obligations[obligation_count - 1][1] * obligations[obligation_count - 1][2])) >= 0:
                 items_list.append(obligations[obligation_count - 1])
                 res_name.append(names[obligation_count - 1])
-                investors_data[2] -= (int(10. * obligations[obligation_count - 1][1] * obligations[obligation_count - 1][2]))
             current_money -= (int(10. * obligations[obligation_count - 1][1] * obligations[obligation_count - 1][2]))
 
     items_list.reverse()

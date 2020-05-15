@@ -72,16 +72,21 @@ if __name__ == '__main__':
         f.close()
     elif in_algorithm == 'opt':
         print('--------------------------------------')
-        second_v_time = timeit.default_timer()
-        investors_data_opt_res, obligations_opt_res, item_list_res, total_reward_res, names_res = \
-            knapsack_optimize.knapsack_solver_optimize(investors_data_opt, obligations_opt, names)
-        second_v_time = timeit.default_timer() - second_v_time
+        tries = 3
+        best_time = 10000000
+        for i in range(tries):
+            second_v_time = timeit.default_timer()
+            investors_data_opt_res, obligations_opt_res, item_list_res, total_reward_res, names_res = \
+                knapsack_optimize.knapsack_solver_optimize(investors_data_opt, obligations_opt, names)
+            second_v_time = timeit.default_timer() - second_v_time
+            if best_time > second_v_time:
+                best_time = second_v_time
         print('--------------------------------------')
         print('MEMORY INFO (USAGE MEM.):')
         print('Memory: {:.4f} MB'.format(mem_use_win32.get_memory_usage() / (1024. * 1024.)))
         print('--------------------------------------')
         print('Numpy Algorithm with Numba optimization:')
-        print('Time: {:.4f} ms'.format(second_v_time * 1000))
+        print('Time: {:.4f} ms'.format(best_time * 1000))
         print('--------------------------------------')
         print(total_reward_res)
         for index in range(len(item_list_res)):
