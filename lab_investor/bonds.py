@@ -33,9 +33,9 @@ def parse_data_optimize(file_path):
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('-a', '--algorithm', default='', help='Base or Opt alg.', required=True)
-    parser.add_argument('-i', '--input_file', default='', help='Input File', required=True)
-    parser.add_argument('-o', '--output_file', default='', help='Output File', required=True)
+    parser.add_argument('-a', '--algorithm', default='base', help='Base or Opt alg.', required=True)
+    parser.add_argument('-i', '--input_file', default='input.txt', help='Input File', required=True)
+    parser.add_argument('-o', '--output_file', default='output.txt', help='Output File', required=True)
     args = parser.parse_args()
     in_algorithm = args.algorithm
     in_input_file = args.input_file
@@ -64,7 +64,7 @@ if __name__ == '__main__':
             print(str(obligation["day"]) + ' ' + str(obligation["name"]) + ' ' + str(obligation["price"]) + ' ' + str(
                 obligation["amount"]))
         print('--------------------------------------')
-        f = open("output.txt", "w")
+        f = open(in_output_file, "w")
         f.write(str(inv_data["total_reward"]) + '\n')
         for obligation in inv_data["items"]:
             f.write(str(obligation["day"]) + ' ' + str(obligation["name"]) + ' ' + str(obligation["price"]) + ' ' + str(
@@ -92,7 +92,7 @@ if __name__ == '__main__':
         for index in range(len(item_list_res)):
             print(str(int(item_list_res[index][0])) + ' ' + names_res[index] + ' ' + str(item_list_res[index][1]) + ' ' + str(int(item_list_res[index][2])))
         print('--------------------------------------')
-        f = open("output.txt", "w")
+        f = open(in_output_file, "w")
         f.write(str(total_reward_res) + '\n')
         for index in range(len(item_list_res)):
             f.write(str(int(item_list_res[index][0])) + ' ' + names_res[index] + ' ' + str(item_list_res[index][1]) + ' ' + str(int(item_list_res[index][2])) + '\n')
